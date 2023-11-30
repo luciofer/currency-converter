@@ -24,24 +24,24 @@
         <label for="from-option">
           Convert from
           <select id="from-option">
-            <option >R$ Brazilian Real</option>
+            <option value="BRL" >R$ Brazilian Real</option>
           </select>
         </label>
 
         <label for="to-option">
           Convert to
-          <select name="" id="to-option">
-            <option>U$ American Dollar</option>
-            <option>€ Euro</option>
+          <select id="to-option">
+            <option value="USD">U$ American Dollar</option>
+            <option value="EUR">€ Euro</option>
           </select>
         </label>
 
-        <label for="">
+        <label for="ammount-value">
           Value
-          <input placeholder="$ 10,000" />
+          <input id="ammount-value" placeholder="$ 10,000" />
         </label>
 
-        <button>Convert</button>
+        <button id="convertBtn">Convert</button>
 
         <section>
           <div class="currency-container">
@@ -60,5 +60,7 @@
         </section>
       </main>
     </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
