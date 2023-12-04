@@ -48,17 +48,35 @@
 
         <section>
           <div class="currency-container">
-            <img src="assets/brazil-flag.svg" alt="Brazilian flag image" />
-            <p class="currency-type">Real</p>
-            <p class="currency-value" id="fromValue">R$ 10,000</p>
+            <img
+              src="assets/brazil-flag.svg"
+              alt="Brazilian flag image"
+              id="fromImage"
+            />
+            <p class="currency-type" id="fromCurrencyName">Real</p>
+            <p class="currency-value" id="fromValue">
+              <span class="currency-value" id="fromSymbol">R$</span> 
+              <span class="currency-value" id="fromValueSpan">0,00</span>
+            </p>
           </div>
 
-          <img class="arrow-img" src="assets/arrow.svg" alt="Arrow towards down" />
+          <img
+            class="arrow-img"
+            src="assets/arrow.svg"
+            alt="Arrow towards down"
+          />
 
           <div class="currency-container">
-            <img src="assets/usa-flag.svg" alt="American flag image" />
-            <p class="currency-type">Dollar</p>
-            <p class="currency-value" id="toValue">U$ 2,000</p>
+            <img
+              src="assets/usa-flag.svg"
+              alt="American flag image"
+              id="toImage"
+            />
+            <p class="currency-type" id="toCurrencyName">Dollar</p>
+            <p class="currency-value" id="toValue">
+              <span class="currency-value" id="toSymbol">$</span>
+              <span class="currency-value" id="toValueSpan">0,00</span>
+            </p>
           </div>
         </section>
       </main>
