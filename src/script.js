@@ -2,19 +2,22 @@ const convertBtn = document.querySelector("#convertBtn")
 const fromOption = document.querySelector("#from-option")
 const toOption = document.querySelector("#to-option")
 const inputValue = document.querySelector("#ammount-value")
-const ammountValue = document.querySelector("#fromValueSpan")
+const ammountValue = document.querySelector("#fromValue")
+const ammountTo = document.querySelector("#toValue")
 
 const baseURL = "https://economia.awesomeapi.com.br/last/"
 
-
-function changeCurrency(country, option) {
+function changeCurrency(country, option, format = 0.0) {
     const countryFlag = document.querySelector(`#${option}Image`)
     const countryCurrency = document.querySelector(`#${option}CurrencyName`)
-    const currencySymbol = document.querySelector(`#${option}Symbol`)
+    const optionSelected = document.querySelector(`#${option}-option`)
+    const optionValue = document.querySelector(`#${option}Value`)
 
     countryFlag.src = `assets/${country.flag}`
     countryCurrency.innerHTML = country.currency
-    currencySymbol.innerHTML = country.symbol
+
+    optionValue.innerHTML = new Intl.NumberFormat('en-US', 
+    { style: 'currency', currency: optionSelected.value}).format(format)
 }
 
 fromOption.addEventListener('change', () => {
@@ -25,26 +28,24 @@ fromOption.addEventListener('change', () => {
             country = {
                 flag: 'usa-flag.svg',
                 currency: 'Dollar',
-                symbol: '$'
             }
             break;
         case 'EUR':
             country = {
                 flag: 'europe-flag.svg',
                 currency: 'Euro',
-                symbol: '€'
             }
             break;
         default:
             country = {
                 flag: 'brazil-flag.svg',
                 currency: 'Real',
-                symbol: 'R$'
             }
     }
 
-    changeCurrency(country, 'from')
-    
+    changeCurrency(country, 'from', inputValue.value)
+    ammountTo.innerHTML = new Intl.NumberFormat('en-US', 
+    { style: 'currency', currency: toOption.value}).format(0.0)
 })
 
 toOption.addEventListener('change', () => {
@@ -56,31 +57,26 @@ toOption.addEventListener('change', () => {
             country = {
                 flag: 'brazil-flag.svg',
                 currency: 'Real',
-                symbol: 'R$'
             }
             break;
         case 'EUR':
             country = {
                 flag: 'europe-flag.svg',
                 currency: 'Euro',
-                symbol: '€'
             }
             break;
         default:
             country = {
                 flag: 'usa-flag.svg',
                 currency: 'Dollar',
-                symbol: '$'
             }
     }
-
     changeCurrency(country, 'to')
-    
 })
 
 inputValue.addEventListener('input', () => {
-    ammountValue.innerHTML= inputValue.value
-
+    ammountValue.innerHTML = new Intl.NumberFormat('en-US', 
+    { style: 'currency', currency: fromOption.value}).format(inputValue.value)
 })
 
 
@@ -90,7 +86,7 @@ convertBtn.addEventListener('click', async event => {
     const ammountToConvert = document.querySelector("#ammount-value").value
 
     if (fromOption.value === toOption.value) {
-        updateValues(ammountToConvert, ammountToConvert, fromOption.value, toOption.value)
+        updateValues(ammountToConvert, toOption.value)
         return
     }
     const currencyType = `${toOption.value}-${fromOption.value}`
@@ -101,12 +97,10 @@ convertBtn.addEventListener('click', async event => {
         const currency = await getCurrency(url, conversionType)
         const result = (ammountToConvert/currency).toFixed(2)
 
-        updateValues(result, ammountToConvert, fromOption.value, toOption.value)
+        updateValues(result, toOption.value)
 
     } catch(error) {
         console.error("Error", error)
-    } finally {
-        console.log("GG")
     }
 })
 
@@ -121,13 +115,9 @@ async function getCurrency(url, conversionType) {
     }
 }
 
-function updateValues(result, ammountToConvert, fromOption, toOption){
-    const fromValue = document.querySelector("#fromValue")
+function updateValues(result, toOption){
     const toValue = document.querySelector("#toValue")
-
-    fromValue.innerHTML = new Intl.NumberFormat('en-US', 
-    { style: 'currency', currency: fromOption}).format(ammountToConvert)
-
     toValue.innerHTML = new Intl.NumberFormat('en-US', 
     { style: 'currency', currency: toOption}).format(result)
 }
+
