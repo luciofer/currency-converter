@@ -13,7 +13,7 @@ function changeCurrency(country, option, format = 0.0) {
     const optionSelected = document.querySelector(`#${option}-option`)
     const optionValue = document.querySelector(`#${option}Value`)
 
-    countryFlag.src = `assets/${country.flag}`
+    countryFlag.src = `src/assets/${country.flag}`
     countryCurrency.innerHTML = country.currency
 
     optionValue.innerHTML = new Intl.NumberFormat('en-US', 
