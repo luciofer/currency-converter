@@ -1,7 +1,8 @@
 # Currency Converyer
 
-This project uses an endpoint from the Awesome API to fetch the currency value. The conversion is in real time and it also can be made in both ways.
+This project uses an endpoint from the Awesome API to fetch the currency value. The conversion is in real time and it also works in both ways.
 
+[Click here to test]()
 
 ## 👩🏾‍💻 Technologies
 
