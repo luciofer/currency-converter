@@ -2,7 +2,7 @@
 
 This project uses an endpoint from the Awesome API to fetch the currency value. The conversion is in real time and it also works in both ways.
 
-[Click here to test]()
+[Click here to test](https://luciofer.github.io/currency-converter/)
 
 ## 👩🏾‍💻 Technologies
 
